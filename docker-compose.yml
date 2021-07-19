@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    ports:
+      - "10000:10000"
+    environment:
+      - CASSANDRA_HOST=cassandra
+
+
+  cassandra:
+    restart: always
+    container_name: cassandra_wallet
+    image: cassandra:latest
+    volumes:
+      - ./cassandra-data:/var/lib/cassandra
+    ports:
+      - "9042:9042"
